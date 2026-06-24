@@ -935,11 +935,11 @@ const threats=[
 {type:'malware',icon:'fa-virus',text:'Вредоносное ПО'},
 {type:'phishing',icon:'fa-fish',text:'Фишинговая атака'},
 {type:'bruteforce',icon:'fa-key',text:'Брутфорс пароля'},
-{type:'ransomware',icon:'fa-lock',text:'Рansomware'},
+{type:'ransomware',icon:'fa-lock',text:'Ransomware'},
 {type:'ddos',icon:'fa-server',text:'DDoS-атака'},
 {type:'exploit',icon:'fa-bug',text:'Эксплойт'},
 {type:'malware',icon:'fa-skull-crossbones',text:'Троян'},
-{type:'phishing',icon:'fa-envelope-open-text',text:'Спуфинг邮件'},
+{type:'phishing',icon:'fa-envelope-open-text',text:'Спуфинг'},
 {type:'bruteforce',icon:'fa-user-secret',text:'Подбор учётных данных'},
 {type:'exploit',icon:'fa-code',text:'Уязвимость 0-day'}
 ];
@@ -954,6 +954,8 @@ counter.innerHTML='<i class="fas fa-shield-halved"></i><span>Заблокиро�
 document.body.appendChild(counter);
 
 let blocked=0;
+const activeThreats=new Set();
+const AUTO_BLOCK_LEVEL=0.75;
 
 function spawnThreat(){
 const t=threats[Math.floor(Math.random()*threats.length)];
@@ -963,15 +965,33 @@ el.innerHTML=`<i class="fas ${t.icon} icon"></i><span>${t.text}</span>`;
 el.style.left=Math.random()*80+5+'%';
 const dur=Math.random()*6+7;
 el.style.animationDuration=dur+'s';
+el.dataset.blocked='0';
 el.onclick=function(e){
 e.stopPropagation();
-blockThreat(this,t);
+if(this.dataset.blocked==='0') blockThreat(this,t);
 };
 container.appendChild(el);
-el.addEventListener('animationend',()=>el.remove());
+activeThreats.add({el,t});
+el.addEventListener('animationend',()=>{
+el.remove();
+activeThreats.forEach(item=>{if(item.el===el)activeThreats.delete(item)});
+});
+}
+
+function autoBlockCheck(){
+activeThreats.forEach(({el,t})=>{
+if(el.dataset.blocked==='1')return;
+const rect=el.getBoundingClientRect();
+const screenH=window.innerHeight;
+if(rect.top>screenH*AUTO_BLOCK_LEVEL){
+blockThreat(el,t);
+}
+});
 }
 
 function blockThreat(el,t){
+if(el.dataset.blocked==='1')return;
+el.dataset.blocked='1';
 blocked++;
 document.getElementById('blockedCount').textContent=blocked;
 el.style.pointerEvents='none';
@@ -989,6 +1009,7 @@ toast.addEventListener('animationend',()=>toast.remove());
 }
 
 setInterval(spawnThreat,2500);
+setInterval(autoBlockCheck,100);
 setTimeout(spawnThreat,500);
 </script>
 </body>
