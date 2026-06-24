@@ -119,7 +119,7 @@ header{position:fixed;top:0;width:100%;background:rgba(11,14,20,0.92);backdrop-f
 .threat.ransomware{background:rgba(255,71,87,0.15);border:1px solid rgba(255,71,87,0.4);color:#ff4757}
 .threat.ddos{background:rgba(255,165,2,0.15);border:1px solid rgba(255,165,2,0.4);color:#ffa502}
 .threat.exploit{background:rgba(255,107,129,0.15);border:1px solid rgba(255,107,129,0.4);color:#ff6b81}
-@keyframes threatFall{0%{transform:translateY(-80px) rotate(0deg);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(110vh) rotate(360deg);opacity:0}}
+@keyframes threatFall{0%{transform:translateY(-80px);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(110vh);opacity:0}}
 .blocked-toast{position:fixed;pointer-events:none;z-index:10000;padding:12px 24px;border-radius:12px;font-weight:700;font-size:.9rem;display:flex;align-items:center;gap:10px;animation:toastPop .8s ease forwards;box-shadow:0 8px 30px rgba(0,255,136,0.3)}
 .blocked-toast .shield{font-size:1.3rem;animation:shieldSpin .5s ease}
 @keyframes toastPop{0%{transform:translateY(0) scale(0.5);opacity:0}30%{transform:translateY(-10px) scale(1.1);opacity:1}50%{transform:translateY(-20px) scale(1);opacity:1}100%{transform:translateY(-60px) scale(0.8);opacity:0}}
@@ -962,7 +962,14 @@ const t=threats[Math.floor(Math.random()*threats.length)];
 const el=document.createElement('div');
 el.className=`threat ${t.type}`;
 el.innerHTML=`<i class="fas ${t.icon} icon"></i><span>${t.text}</span>`;
-el.style.left=Math.random()*80+5+'%';
+const side=Math.random()>0.5?'left':'right';
+const offset=Math.random()*12;
+if(side==='left'){
+el.style.left=offset+'%';
+}else{
+el.style.right=offset+'%';
+el.style.left='auto';
+}
 const dur=Math.random()*6+7;
 el.style.animationDuration=dur+'s';
 el.dataset.blocked='0';
