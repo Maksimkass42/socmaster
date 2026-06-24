@@ -156,12 +156,13 @@ header{position:fixed;top:0;width:100%;background:rgba(11,14,20,0.92);backdrop-f
 .career-level[data-level="2"] .level-fill{background:linear-gradient(90deg,var(--blue),#0088cc)}
 .career-level[data-level="3"] .level-fill{background:linear-gradient(90deg,var(--purple),#8844cc)}
 .career-level[data-level="4"] .level-fill{background:linear-gradient(90deg,var(--orange),#cc7700)}
-.lvl-up-wrap{position:relative;height:0;display:flex;justify-content:center;z-index:10}
-.lvl-up-btn{position:relative;top:14px;padding:12px 32px;border-radius:50px;background:linear-gradient(135deg,var(--blue),var(--green));color:#fff;font-weight:700;font-size:.9rem;cursor:pointer;border:none;transition:.3s;text-transform:uppercase;letter-spacing:1px;box-shadow:0 4px 20px rgba(0,163,255,0.4);pointer-events:auto}
+.lvl-up-wrap{display:flex;justify-content:center;padding:8px 0;z-index:10}
+.lvl-up-btn{padding:14px 36px;border-radius:50px;background:linear-gradient(135deg,var(--blue),var(--green));color:#fff;font-weight:700;font-size:.9rem;cursor:pointer;border:none;transition:.3s;text-transform:uppercase;letter-spacing:1px;box-shadow:0 4px 20px rgba(0,163,255,0.4);pointer-events:auto}
 .lvl-up-btn:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,163,255,0.6)}
 .lvl-up-btn:active{transform:scale(0.95)}
 .lvl-up-btn i{margin-right:6px}
 .lvl-up-btn.pulse{animation:lvlPulse 2s ease-in-out infinite}
+.lvl-up-btn.hidden{display:none}
 @keyframes lvlPulse{0%,100%{box-shadow:0 4px 20px rgba(0,163,255,0.4)}50%{box-shadow:0 4px 30px rgba(0,255,136,0.6)}}
 
 @keyframes shieldPulse{0%,100%{filter:drop-shadow(0 0 4px rgba(0,163,255,0.4))}50%{filter:drop-shadow(0 0 12px rgba(0,163,255,0.8))}}
@@ -555,7 +556,7 @@ select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 20px rgba(0,16
 <div class="level-bar"><div class="level-fill" style="width:25%"></div></div>
 </div>
 </div>
-<div class="lvl-up-wrap" data-for="2"><div class="lvl-up-btn pulse" onclick="unlockLevel(2)"><i class="fas fa-arrow-up"></i> LVL UP</div></div>
+<div class="lvl-up-wrap"><div class="lvl-up-btn pulse" onclick="unlockLevel(2)"><i class="fas fa-arrow-up"></i> LVL UP</div></div>
 <div class="career-level locked" data-level="2">
 <div class="career-level-inner glass">
 <div class="level-badge badge-m">Уровень 2</div>
@@ -566,7 +567,7 @@ select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 20px rgba(0,16
 <div class="level-bar"><div class="level-fill" style="width:50%"></div></div>
 </div>
 </div>
-<div class="lvl-up-wrap" data-for="3"><div class="lvl-up-btn pulse" onclick="unlockLevel(3)"><i class="fas fa-arrow-up"></i> LVL UP</div></div>
+<div class="lvl-up-wrap hidden"><div class="lvl-up-btn pulse" onclick="unlockLevel(3)"><i class="fas fa-arrow-up"></i> LVL UP</div></div>
 <div class="career-level locked" data-level="3">
 <div class="career-level-inner glass">
 <div class="level-badge badge-s">Уровень 3</div>
@@ -577,7 +578,7 @@ select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 20px rgba(0,16
 <div class="level-bar"><div class="level-fill" style="width:75%"></div></div>
 </div>
 </div>
-<div class="lvl-up-wrap" data-for="4"><div class="lvl-up-btn pulse" onclick="unlockLevel(4)"><i class="fas fa-arrow-up"></i> LVL UP</div></div>
+<div class="lvl-up-wrap hidden"><div class="lvl-up-btn pulse" onclick="unlockLevel(4)"><i class="fas fa-arrow-up"></i> LVL UP</div></div>
 <div class="career-level locked" data-level="4">
 <div class="career-level-inner glass">
 <div class="level-badge badge-l">Уровень 4</div>
@@ -1085,29 +1086,26 @@ setInterval(autoBlockCheck,100);
 setTimeout(spawnThreat,500);
 
 /* === Карьерный путь — уровни === */
+const lvlWraps=document.querySelectorAll('.lvl-up-wrap');
 function unlockLevel(level){
+const prev=level-1;
+const prevEl=document.querySelector(`.career-level[data-level="${prev}"]`);
+if(!prevEl||!prevEl.classList.contains('unlocked'))return;
 const el=document.querySelector(`.career-level[data-level="${level}"]`);
 if(!el||el.classList.contains('unlocked'))return;
-const btnWrap=document.querySelector(`.lvl-up-wrap[data-for="${level}"]`);
-if(btnWrap){
-btnWrap.style.transition='opacity .3s';
-btnWrap.style.opacity='0';
-setTimeout(()=>btnWrap.remove(),300);
+const curBtn=el.previousElementSibling;
+if(curBtn&&curBtn.classList.contains('lvl-up-wrap')){
+curBtn.style.transition='opacity .3s';
+curBtn.style.opacity='0';
+setTimeout(()=>curBtn.style.display='none',300);
 }
 el.classList.remove('locked');
 el.classList.add('unlocked','just-unlocked');
 setTimeout(()=>el.classList.remove('just-unlocked'),800);
-const nextBtn=document.querySelector(`.lvl-up-wrap[data-for="${level+1}"]`);
-if(nextBtn){
-nextBtn.style.opacity='0';
-nextBtn.style.display='flex';
-setTimeout(()=>{nextBtn.style.transition='opacity .4s';nextBtn.style.opacity='1'},400);
-}
-const next=document.querySelector(`.career-level[data-level="${level+1}"]`);
-if(next){
-setTimeout(()=>{
-next.scrollIntoView({behavior:'smooth',block:'center'});
-},400);
+const nextWrap=el.nextElementSibling;
+if(nextWrap&&nextWrap.classList.contains('lvl-up-wrap')){
+nextWrap.classList.remove('hidden');
+nextWrap.scrollIntoView({behavior:'smooth',block:'center'});
 }
 }
 </script>
