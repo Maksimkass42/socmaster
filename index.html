@@ -1000,8 +1000,10 @@ el.dataset.blocked='1';
 blocked++;
 document.getElementById('blockedCount').textContent=blocked;
 el.style.pointerEvents='none';
-el.style.opacity='0';
+el.style.animation='none';
 el.style.transition='opacity .2s';
+el.style.opacity='0';
+setTimeout(()=>el.remove(),200);
 
 const toast=document.createElement('div');
 toast.className='blocked-toast success';
