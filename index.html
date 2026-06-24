@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SOC Analyst</title>
+<title>SOC Analyst — Специалист первой линии</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
-:root{--bg:#0b0e14;--card:rgba(255,255,255,0.04);--blue:#00a3ff;--green:#00ff88;--txt:#e0e0e0;--dim:#8892a0;--glow:rgba(0,163,255,0.15)}
+:root{--bg:#0b0e14;--card:rgba(255,255,255,0.04);--blue:#00a3ff;--green:#00ff88;--txt:#e0e0e0;--dim:#8892a0;--glow:rgba(0,163,255,0.15);--orange:#ff9f43;--red:#ff6b6b;--purple:#a66cff}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-height:1.7}
@@ -36,6 +36,8 @@ nav a:hover::after{width:100%}
 .hero p{font-size:1.2rem;color:var(--dim);margin-bottom:36px;max-width:650px;margin-inline:auto}
 .btn{display:inline-block;padding:15px 38px;border-radius:50px;background:linear-gradient(135deg,var(--blue),var(--green));color:#fff;font-weight:600;font-size:1rem;text-transform:uppercase;letter-spacing:.8px;transition:.3s;box-shadow:0 8px 25px rgba(0,163,255,0.3)}
 .btn:hover{transform:translateY(-3px);box-shadow:0 12px 35px rgba(0,163,255,0.4);color:#fff}
+.btn-outline{display:inline-block;padding:15px 38px;border-radius:50px;border:2px solid var(--blue);color:var(--blue);font-weight:600;font-size:1rem;text-transform:uppercase;letter-spacing:.8px;transition:.3s;background:transparent}
+.btn-outline:hover{background:var(--blue);color:#fff;transform:translateY(-3px)}
 section{padding:110px 0}
 .sec-h{text-align:center;margin-bottom:60px}
 .sec-h h2{font-size:2.4rem;font-weight:700;color:#fff;margin-bottom:14px}
@@ -43,27 +45,56 @@ section{padding:110px 0}
 .sec-h p{font-size:1.05rem;color:var(--dim);max-width:550px;margin:0 auto}
 .glass{background:var(--card);border:1px solid var(--glow);border-radius:18px;padding:36px;backdrop-filter:blur(8px);transition:.4s}
 .glass:hover{transform:translateY(-8px);box-shadow:0 16px 45px rgba(0,163,255,0.18);border-color:var(--blue)}
+
+/* Блок 1 — О профессии */
 .about-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px}
 .about-card{text-align:center}
 .about-card i{font-size:2.8rem;color:var(--blue);margin-bottom:22px;transition:.3s}
 .about-card:hover i{color:var(--green)}
 .about-card h3{font-size:1.3rem;color:#fff;margin-bottom:12px}
 .about-card p{color:var(--dim);font-size:.95rem}
+.quote-box{background:linear-gradient(135deg,rgba(0,163,255,0.08),rgba(0,255,136,0.08));border:1px solid var(--glow);border-radius:18px;padding:40px;text-align:center;margin-top:40px;position:relative;overflow:hidden}
+.quote-box::before{content:'"';position:absolute;top:-20px;left:20px;font-size:8rem;color:rgba(0,163,255,0.1);font-family:Georgia,serif}
+.quote-box p{font-size:1.15rem;color:var(--txt);font-style:italic;max-width:700px;margin:0 auto}
+.quote-box .author{color:var(--blue);font-weight:600;margin-top:12px;font-style:normal}
+
+/* Блок 2 — Задачи */
+.tasks-list{display:flex;flex-direction:column;gap:20px;max-width:800px;margin:0 auto}
+.task-item{display:flex;align-items:flex-start;gap:20px;padding:24px 28px;background:var(--card);border:1px solid var(--glow);border-radius:14px;transition:.3s}
+.task-item:hover{border-color:var(--blue);transform:translateX(6px)}
+.task-num{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.2rem;flex-shrink:0;background:rgba(0,163,255,0.14);color:var(--blue)}
+.task-item h4{color:#fff;font-size:1.05rem;margin-bottom:4px}
+.task-item p{color:var(--dim);font-size:.92rem}
+
+/* Блок 3 — Навыки */
+.skills-tabs{display:flex;justify-content:center;gap:12px;margin-bottom:40px;flex-wrap:wrap}
+.tab-btn{padding:12px 28px;border-radius:50px;border:2px solid var(--glow);background:transparent;color:var(--dim);font-weight:600;font-size:.95rem;cursor:pointer;transition:.3s;font-family:inherit}
+.tab-btn.active,.tab-btn:hover{border-color:var(--blue);color:#fff;background:rgba(0,163,255,0.1)}
 .skills-wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px}
 .sk{display:flex;align-items:center;gap:18px;padding:22px;background:var(--card);border-radius:14px;border:1px solid transparent;transition:.3s}
 .sk:hover{border-color:var(--blue);background:rgba(0,163,255,0.06)}
 .sk-i{width:56px;height:56px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.7rem;flex-shrink:0}
 .sk-i.b{background:rgba(0,163,255,0.14);color:var(--blue)}
 .sk-i.g{background:rgba(0,255,136,0.14);color:var(--green)}
+.sk-i.o{background:rgba(255,159,67,0.14);color:var(--orange)}
+.sk-i.p{background:rgba(166,108,255,0.14);color:var(--purple)}
 .sk-t h4{color:#fff;font-size:1.05rem;margin-bottom:4px}
 .sk-t p{color:var(--dim);font-size:.88rem}
-.tools-sec{margin-bottom:44px}
-.tools-sec h3{color:var(--blue);font-size:1.2rem;margin-bottom:22px;display:flex;align-items:center;gap:10px}
-.tools-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:18px}
-.tool-t{background:var(--card);border:1px solid var(--glow);border-radius:11px;padding:22px 14px;text-align:center;transition:.3s}
-.tool-t:hover{border-color:var(--green);transform:translateY(-4px)}
-.tool-t i{font-size:2rem;color:var(--blue);margin-bottom:10px}
-.tool-t span{display:block;color:#fff;font-weight:500;font-size:.92rem}
+.tab-content{display:none}
+.tab-content.active{display:block}
+
+/* Блок 4 — Карьера */
+.career-table-wrap{overflow-x:auto;margin-bottom:50px}
+.career-table{width:100%;border-collapse:separate;border-spacing:0;background:var(--card);border:1px solid var(--glow);border-radius:16px;overflow:hidden}
+.career-table th{background:rgba(0,163,255,0.12);color:var(--blue);padding:18px 24px;text-align:left;font-weight:700;font-size:.95rem;border-bottom:2px solid var(--glow)}
+.career-table td{padding:16px 24px;border-bottom:1px solid rgba(255,255,255,0.04);color:var(--txt);font-size:.93rem}
+.career-table tr:last-child td{border-bottom:none}
+.career-table tr:hover td{background:rgba(0,163,255,0.04)}
+.badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:.8rem;font-weight:600}
+.badge-j{background:rgba(0,255,136,0.15);color:var(--green)}
+.badge-m{background:rgba(0,163,255,0.15);color:var(--blue)}
+.badge-s{background:rgba(166,108,255,0.15);color:var(--purple)}
+.badge-l{background:rgba(255,159,67,0.15);color:var(--orange)}
 .tl{position:relative;max-width:860px;margin:0 auto;padding:20px 0}
 .tl::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,var(--blue),var(--green));transform:translateX(-50%)}
 .tl-i{position:relative;width:44%;padding:24px;background:var(--card);border-radius:14px;border:1px solid var(--glow);margin-bottom:36px}
@@ -74,11 +105,62 @@ section{padding:110px 0}
 .tl-i:nth-child(even)::before{left:-33px}
 .tl-i h4{color:var(--blue);font-size:1.15rem;margin-bottom:8px}
 .tl-i p{color:var(--dim);font-size:.93rem}
-.ben-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px}
-.ben{display:flex;align-items:flex-start;gap:18px;padding:28px;background:var(--card);border-radius:14px;border-left:4px solid var(--green)}
-.ben i{font-size:1.9rem;color:var(--green);flex-shrink:0}
-.ben h4{color:#fff;margin-bottom:8px}
-.ben p{color:var(--dim);font-size:.93rem}
+
+/* Блок 5 — День из жизни */
+.schedule{max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:0;position:relative}
+.schedule::before{content:'';position:absolute;left:32px;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,var(--blue),var(--green),var(--orange))}
+.schedule-item{display:flex;gap:28px;padding:28px 0;position:relative}
+.schedule-time{width:65px;flex-shrink:0;text-align:right;padding-top:4px}
+.schedule-time .hour{color:var(--blue);font-weight:700;font-size:1.1rem}
+.schedule-dot{position:absolute;left:25px;top:32px;width:18px;height:18px;border-radius:50%;border:3px solid var(--blue);background:var(--bg);z-index:1}
+.schedule-item:nth-child(3) .schedule-dot,
+.schedule-item:nth-child(4) .schedule-dot{border-color:var(--orange)}
+.schedule-item:nth-child(6) .schedule-dot,
+.schedule-item:nth-child(7) .schedule-dot{border-color:var(--green)}
+.schedule-content{flex:1;margin-left:30px;padding:24px 28px;background:var(--card);border:1px solid var(--glow);border-radius:14px;transition:.3s}
+.schedule-content:hover{border-color:var(--blue);transform:translateX(6px)}
+.schedule-content h4{color:#fff;font-size:1.05rem;margin-bottom:6px}
+.schedule-content p{color:var(--dim);font-size:.92rem}
+
+/* Блок 6 — Почему важно */
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px}
+.why-card{padding:32px;background:var(--card);border:1px solid var(--glow);border-radius:16px;transition:.3s}
+.why-card:hover{border-color:var(--green);transform:translateY(-6px);box-shadow:0 12px 35px rgba(0,255,136,0.12)}
+.why-card i{font-size:2.2rem;margin-bottom:18px}
+.why-card h4{color:#fff;font-size:1.15rem;margin-bottom:10px}
+.why-card p{color:var(--dim);font-size:.93rem}
+.stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;margin-top:40px}
+.stat-box{text-align:center;padding:28px 20px;background:var(--card);border:1px solid var(--glow);border-radius:14px}
+.stat-box .num{font-size:2.4rem;font-weight:800;background:linear-gradient(135deg,var(--blue),var(--green));-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat-box p{color:var(--dim);font-size:.9rem;margin-top:6px}
+
+/* Блок 7 — Тест */
+.quiz{max-width:700px;margin:0 auto}
+.quiz-q{margin-bottom:40px;padding:32px;background:var(--card);border:1px solid var(--glow);border-radius:16px}
+.quiz-q h3{color:#fff;font-size:1.15rem;margin-bottom:20px}
+.quiz-q h3 span{color:var(--blue)}
+.quiz-opts{display:flex;flex-direction:column;gap:12px}
+.quiz-opt{display:flex;align-items:center;gap:14px;padding:16px 20px;border:2px solid var(--glow);border-radius:12px;cursor:pointer;transition:.3s;font-size:.95rem}
+.quiz-opt:hover{border-color:var(--blue);background:rgba(0,163,255,0.06)}
+.quiz-opt input{display:none}
+.quiz-opt .radio{width:22px;height:22px;border-radius:50%;border:2px solid var(--dim);flex-shrink:0;transition:.3s;position:relative}
+.quiz-opt.selected .radio{border-color:var(--blue)}
+.quiz-opt.selected .radio::after{content:'';position:absolute;inset:4px;border-radius:50%;background:var(--blue)}
+.quiz-opt.correct{border-color:var(--green);background:rgba(0,255,136,0.08)}
+.quiz-opt.correct .radio{border-color:var(--green)}
+.quiz-opt.correct .radio::after{background:var(--green)}
+.quiz-opt.wrong{border-color:var(--red);background:rgba(255,107,107,0.08)}
+.quiz-opt.wrong .radio{border-color:var(--red)}
+.quiz-opt.wrong .radio::after{background:var(--red)}
+.quiz-opt.disabled{pointer-events:none;opacity:.85}
+.quiz-result{text-align:center;padding:40px;background:linear-gradient(135deg,rgba(0,163,255,0.08),rgba(0,255,136,0.08));border:1px solid var(--glow);border-radius:18px;display:none}
+.quiz-result.show{display:block}
+.quiz-result .score{font-size:3rem;font-weight:800;margin-bottom:10px}
+.quiz-result h3{color:#fff;font-size:1.5rem;margin-bottom:10px}
+.quiz-result p{color:var(--dim);font-size:1rem;max-width:500px;margin:0 auto 20px}
+.quiz-result .btn{margin-top:10px}
+
+/* Контакты */
 .contact-g{display:grid;grid-template-columns:1fr 1fr;gap:55px;align-items:start}
 .cform{display:flex;flex-direction:column;gap:22px}
 .fg{position:relative}
@@ -98,8 +180,34 @@ footer{background:rgba(0,0,0,0.3);border-top:1px solid var(--glow);padding:45px 
 .ftr-s{display:flex;gap:14px}
 .ftr-s a{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:var(--card);color:var(--txt);font-size:1rem;transition:.3s}
 .ftr-s a:hover{background:var(--blue);color:#fff;transform:translateY(-3px)}
-@media(max-width:900px){.hero h1{font-size:2.4rem}nav ul{display:none}.mob{display:block}.contact-g{grid-template-columns:1fr}.tl::before{left:20px}.tl-i{width:calc(100% - 50px);margin-left:50px!important}.tl-i::before{left:-38px!important;right:auto!important}}
-@media(max-width:600px){.hero h1{font-size:1.9rem}.sec-h h2{font-size:1.8rem}nav ul.show{display:flex;flex-direction:column;position:absolute;top:65px;left:0;right:0;background:rgba(11,14,20,0.98);padding:20px;gap:18px;border-bottom:1px solid var(--glow)}}
+/* Форма резюме */
+.resume-g{display:grid;grid-template-columns:1.3fr 1fr;gap:36px;align-items:start}
+.resume-form-wrap{position:relative}
+.resume-form{display:flex;flex-direction:column;gap:18px}
+.resume-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+select{width:100%;padding:16px 18px;background:var(--card);border:1px solid var(--glow);border-radius:10px;color:#fff;font-family:inherit;font-size:.95rem;transition:.3s;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238892a0' stroke-width='2' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center}
+select option{background:#161b22;color:var(--txt)}
+select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 15px rgba(0,163,255,0.15)}
+.file-label{cursor:pointer;display:block}
+.file-label input{display:none}
+.file-box{display:flex;align-items:center;gap:12px;padding:16px 18px;background:var(--card);border:2px dashed var(--glow);border-radius:10px;color:var(--dim);font-size:.93rem;transition:.3s}
+.file-label:hover .file-box{border-color:var(--blue);color:var(--blue)}
+.file-box i{font-size:1.3rem}
+.resume-btn{font-size:1.05rem;padding:16px;display:flex;align-items:center;justify-content:center;gap:10px}
+.resume-btn:disabled{opacity:.4;cursor:not-allowed;transform:none!important;box-shadow:none!important}
+.field-err{border-color:var(--red)!important;box-shadow:0 0 12px rgba(255,107,107,0.2)!important}
+.resume-success{display:none;text-align:center;padding:50px 30px}
+.resume-success.show{display:block}
+.success-icon{font-size:4rem;color:var(--green);margin-bottom:18px}
+.resume-success h3{color:#fff;font-size:1.5rem;margin-bottom:10px}
+.resume-success p{color:var(--dim);font-size:1rem}
+.resume-info{display:flex;flex-direction:column;gap:20px}
+.ri-card{padding:28px}
+.ri-card i{font-size:1.8rem;margin-bottom:14px}
+.ri-card h4{color:#fff;font-size:1.05rem;margin-bottom:8px}
+.ri-card p{color:var(--dim);font-size:.9rem;line-height:1.8}
+@media(max-width:900px){.hero h1{font-size:2.4rem}nav ul{display:none}.mob{display:block}.contact-g{grid-template-columns:1fr}.tl::before{left:20px}.tl-i{width:calc(100% - 50px);margin-left:50px!important}.tl-i::before{left:-38px!important;right:auto!important}.schedule-time{width:50px}.schedule-dot{left:18px}}
+@media(max-width:600px){.hero h1{font-size:1.9rem}.sec-h h2{font-size:1.8rem}nav ul.show{display:flex;flex-direction:column;position:absolute;top:65px;left:0;right:0;background:rgba(11,14,20,0.98);padding:20px;gap:18px;border-bottom:1px solid var(--glow)}.resume-g{grid-template-columns:1fr}.resume-row{grid-template-columns:1fr}.schedule-time .hour{font-size:.9rem}.schedule-content{margin-left:10px;padding:18px}}
 </style>
 </head>
 <body>
@@ -109,11 +217,13 @@ footer{background:rgba(0,0,0,0.3);border-top:1px solid var(--glow);padding:45px 
 <nav>
 <ul id="nav">
 <li><a href="#about">О профессии</a></li>
+<li><a href="#tasks">Задачи</a></li>
 <li><a href="#skills">Навыки</a></li>
-<li><a href="#tools">Инструменты</a></li>
 <li><a href="#career">Карьера</a></li>
-<li><a href="#why">Преимущества</a></li>
-<li><a href="#contact">Контакты</a></li>
+<li><a href="#daylife">День из жизни</a></li>
+<li><a href="#why">ЭРТХ</a></li>
+<li><a href="#quiz">Тест</a></li>
+<li><a href="#resume">Резюме</a></li>
 </ul>
 </nav>
 <i class="fas fa-bars mob" onclick="document.getElementById('nav').classList.toggle('show')"></i>
@@ -122,38 +232,90 @@ footer{background:rgba(0,0,0,0.3);border-top:1px solid var(--glow);padding:45px 
 
 <section class="hero">
 <div class="hero-c">
-<h1>Первая линия обороны вашей цифровой инфраструктуры</h1>
-<p>SOC Analyst — глаза и уши центра безопасности. Отслеживает угрозы 24/7, классифицирует инциденты и защищает бизнес от кибератак в реальном времени.</p>
+<h1>Специалист первой линии SOC</h1>
+<p>Цифровой пожарный, который тушит искры, чтобы они не превратились в лесной пожар. Глаза и уши центра безопасности. Отслеживает угрозы 24/7, классифицирует инциденты и защищает бизнес от кибератак в реальном времени.</p>
+<div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
 <a href="#about" class="btn">Узнать больше</a>
+<a href="#quiz" class="btn-outline">Пройти тест</a>
+</div>
 </div>
 </section>
 
 <section id="about">
 <div class="wrap">
 <div class="sec-h">
-<h2>О <span>профессии</span></h2>
-<p>Роль специалиста SOC первой линии и почему она критически важна</p>
+<h2>Кто <span>мы такие</span></h2>
+<p>Роль специалиста SOC первой линии — оператор центра кибербезопасности</p>
 </div>
 <div class="about-grid">
 <div class="glass about-card">
 <i class="fas fa-desktop"></i>
-<h3>Мониторинг</h3>
-<p>Непрерывное наблюдение за сетевой активностью, серверами и рабочими станциями через SIEM и средства детектирования</p>
+<h3>Мониторинг 24/7</h3>
+<p>Круглосуточное наблюдение за событиями безопасности в системах</p>
 </div>
 <div class="glass about-card">
 <i class="fas fa-search"></i>
-<h3>Анализ событий</h3>
-<p>Изучение алертов, корреляция данных из разных источников, отделение ложных срабатываний от реальных инцидентов</p>
+<h3>Детектирование</h3>
+<p>Отличаем ложную тревогу от реальной атаки среди тысяч событий</p>
 </div>
 <div class="glass about-card">
 <i class="fas fa-bolt"></i>
 <h3>Реагирование</h3>
-<p>Оперативное противодействие угрозам: изоляция скомпрометированных хостов, блокировка вредоносного трафика</p>
+<p>Если атака началась — запускаем протоколы блокировки без паники</p>
 </div>
 <div class="glass about-card">
-<i class="fas fa-tags"></i>
-<h3>Классификация</h3>
-<p>Определение типа атаки (фишинг, вредоносное ПО, lateral movement), уровня критичности и приоритетов реагирования</p>
+<i class="fas fa-filter"></i>
+<h3>Настройка фильтров</h3>
+<p>Умные фильтры, чтобы видеть только важное, а не весь мусор в сети</p>
+</div>
+<div class="glass about-card">
+<i class="fas fa-comments"></i>
+<h3>Коммуникация</h3>
+<p>Понятным языком объясняем L2/L3, что произошло и где искать улики</p>
+</div>
+<div class="glass about-card">
+<i class="fas fa-book"></i>
+<h3>Разработка правил</h3>
+<p>Пишем новые «табу» для атакующих, чтобы в следующий раз было сложнее</p>
+</div>
+</div>
+<div class="quote-box">
+<p>Это <strong>цифровой пожарный</strong>, который тушит искры, чтобы они не превратились в лесной пожар.</p>
+<div class="author">— Миссия SOC Analyst</div>
+</div>
+</div>
+</section>
+
+<section id="tasks">
+<div class="wrap">
+<div class="sec-h">
+<h2>Рабочие <span>задачи</span></h2>
+<p>Что мы делаем каждый день</p>
+</div>
+<div class="tasks-list">
+<div class="task-item">
+<div class="task-num">1</div>
+<div><h4>Мониторинг событий безопасности</h4><p>Круглосуточное наблюдение за событиями безопасности в системах. Никто не спит — мы тоже.</p></div>
+</div>
+<div class="task-item">
+<div class="task-num">2</div>
+<div><h4>Классификация алертов</h4><p>Отличаем ложную тревогу (кот пробежал по клавиатуре) от реальной атаки.</p></div>
+</div>
+<div class="task-item">
+<div class="task-num">3</div>
+<div><h4>Запуск протоколов блокировки</h4><p>Если атака началась — мы не паникуем, а запускаем протоколы блокировки.</p></div>
+</div>
+<div class="task-item">
+<div class="task-num">4</div>
+<div><h4>Настройка фильтров</h4><p>Настраиваем умные фильтры, чтобы видеть только важное, а не весь мусор в сети.</p></div>
+</div>
+<div class="task-item">
+<div class="task-num">5</div>
+<div><h4>Информирование старших коллег</h4><p>Понятным языком объясняем L2/L3, что именно произошло и где искать улики.</p></div>
+</div>
+<div class="task-item">
+<div class="task-num">6</div>
+<div><h4>Написание новых правил</h4><p>Пишем новые «табу» для атакующих, чтобы в следующий раз им было сложнее.</p></div>
 </div>
 </div>
 </div>
@@ -163,62 +325,34 @@ footer{background:rgba(0,0,0,0.3);border-top:1px solid var(--glow);padding:45px 
 <div class="wrap">
 <div class="sec-h">
 <h2>Ключевые <span>навыки</span></h2>
-<p>Технические и аналитические компетенции успешного SOC-аналитика</p>
+<p>Soft Skills и Hard Skills успешного SOC-аналитика</p>
 </div>
-<div class="skills-wrap">
-<div class="sk"><div class="sk-i b"><i class="fas fa-chart-line"></i></div><div class="sk-t"><h4>SIEM-системы</h4><p>Splunk, QRadar, Sentinel, ELK Stack</p></div></div>
-<div class="sk"><div class="sk-i g"><i class="fas fa-network-wired"></i></div><div class="sk-t"><h4>Сетевые протоколы</h4><p>TCP/IP, DNS, HTTP/S, NetFlow</p></div></div>
-<div class="sk"><div class="sk-i b"><i class="fab fa-windows"></i></div><div class="sk-t"><h4>Windows / Linux</h4><p>Администрирование и логирование</p></div></div>
-<div class="sk"><div class="sk-i g"><i class="fas fa-brain"></i></div><div class="sk-t"><h4>Аналитическое мышление</h4><p>Расследования и выводы из данных</p></div></div>
-<div class="sk"><div class="sk-i b"><i class="fas fa-file-shield"></i></div><div class="sk-t"><h4>IOCs и правила</h4><p>YARA, Sigma-правила, хеши</p></div></div>
-<div class="sk"><div class="sk-i g"><i class="fas fa-comments"></i></div><div class="sk-t"><h4>Коммуникация</h4><p>Документирование и отчёты</p></div></div>
-<div class="sk"><div class="sk-i b"><i class="fas fa-fire-extinguisher"></i></div><div class="sk-t"><h4>Стрессоустойчивость</h4><p>Работа под давлением 24/7</p></div></div>
-<div class="sk"><div class="sk-i g"><i class="fas fa-virus-slash"></i></div><div class="sk-t"><h4>Анализ вредоносного кода</h4><p>Основы реверс-инжинеринга</p></div></div>
+<div class="skills-tabs">
+<button class="tab-btn active" onclick="showTab('soft')">Soft Skills</button>
+<button class="tab-btn" onclick="showTab('hard')">Hard Skills</button>
 </div>
-</div>
-</section>
 
-<section id="tools">
-<div class="wrap">
-<div class="sec-h">
-<h2>Инструменты и <span>технологии</span></h2>
-<p>Популярные платформы, с которыми работает SOC-аналитик</p>
-</div>
-<div class="tools-sec">
-<h3><i class="fas fa-satellite-dish"></i> SIEM и мониторинг</h3>
-<div class="tools-g">
-<div class="tool-t"><i class="fas fa-database"></i><span>Splunk</span></div>
-<div class="tool-t"><i class="fas fa-server"></i><span>QRadar</span></div>
-<div class="tool-t"><i class="fas fa-cloud"></i><span>Sentinel</span></div>
-<div class="tool-t"><i class="fas fa-search"></i><span>ELK Stack</span></div>
-<div class="tool-t"><i class="fas fa-eye"></i><span>Wazuh</span></div>
+<div id="tab-soft" class="tab-content active">
+<div class="skills-wrap">
+<div class="sk"><div class="sk-i b"><i class="fas fa-fire-extinguisher"></i></div><div class="sk-t"><h4>Стрессоустойчивость</h4><p>Хладнокровие при массовых срабатываниях и многозадачность без потери качества</p></div></div>
+<div class="sk"><div class="sk-i g"><i class="fas fa-eye"></i></div><div class="sk-t"><h4>Внимательность к деталям</h4><p>Выделяем аномалии среди тысяч штатных событий</p></div></div>
+<div class="sk"><div class="sk-i b"><i class="fas fa-brain"></i></div><div class="sk-t"><h4>Аналитическое мышление</h4><p>Быстрая оценка и построение логических связей между событиями</p></div></div>
+<div class="sk"><div class="sk-i g"><i class="fas fa-comments"></i></div><div class="sk-t"><h4>Коммуникабельность</h4><p>Чёткое информирование коллег о характере инцидента</p></div></div>
+<div class="sk"><div class="sk-i b"><i class="fas fa-graduation-cap"></i></div><div class="sk-t"><h4>Обучаемость</h4><p>Готовность ежедневно изучать новые тактики атакующих</p></div></div>
+<div class="sk"><div class="sk-i g"><i class="fas fa-people-group"></i></div><div class="sk-t"><h4>Командная работа</h4><p>Синхронное взаимодействие со смежными отделами</p></div></div>
 </div>
 </div>
-<div class="tools-sec">
-<h3><i class="fas fa-shield-virus"></i> Анализ угроз</h3>
-<div class="tools-g">
-<div class="tool-t"><i class="fas fa-spider"></i><span>VirusTotal</span></div>
-<div class="tool-t"><i class="fas fa-magnifying-glass"></i><span>Any.Run</span></div>
-<div class="tool-t"><i class="fas fa-vial"></i><span>Cuckoo</span></div>
-<div class="tool-t"><i class="fas fa-bug"></i><span>Malwarebytes</span></div>
-</div>
-</div>
-<div class="tools-sec">
-<h3><i class="fas fa-wave-square"></i> Сетевой анализ</h3>
-<div class="tools-g">
-<div class="tool-t"><i class="fas fa-water"></i><span>Wireshark</span></div>
-<div class="tool-t"><i class="fas fa-diagram-project"></i><span>Zeek</span></div>
-<div class="tool-t"><i class="fas fa-route"></i><span>Suricata</span></div>
-<div class="tool-t"><i class="fas fa-tower-broadcast"></i><span>Snort</span></div>
-</div>
-</div>
-<div class="tools-sec">
-<h3><i class="fas fa-clipboard-list"></i> Управление инцидентами</h3>
-<div class="tools-g">
-<div class="tool-t"><i class="fas fa-database"></i><span>TheHive</span></div>
-<div class="tool-t"><i class="fas fa-magnet"></i><span>MISP</span></div>
-<div class="tool-t"><i class="fas fa-gauge-high"></i><span>Cortex</span></div>
-<div class="tool-t"><i class="fas fa-arrows-rotate"></i><span>Shuffle</span></div>
+
+<div id="tab-hard" class="tab-content">
+<div class="skills-wrap">
+<div class="sk"><div class="sk-i b"><i class="fas fa-network-wired"></i></div><div class="sk-t"><h4>Сетевые протоколы</h4><p>TCP/IP, HTTP/HTTPS, DNS, SMTP, FTP — глубокое понимание стека</p></div></div>
+<div class="sk"><div class="sk-i g"><i class="fas fa-layer-group"></i></div><div class="sk-t"><h4>OSI-модель</h4><p>Знание 7 уровней для корректной интерпретации событий</p></div></div>
+<div class="sk"><div class="sk-i b"><i class="fas fa-chart-line"></i></div><div class="sk-t"><h4>SIEM-системы</h4><p>QRadar, ArcSight, Splunk — правила, фильтры, дашборды</p></div></div>
+<div class="sk"><div class="sk-i g"><i class="fab fa-linux"></i></div><div class="sk-t"><h4>Linux</h4><p>Командная строка, логи, процессы, права доступа</p></div></div>
+<div class="sk"><div class="sk-i b"><i class="fab fa-windows"></i></div><div class="sk-t"><h4>Windows</h4><p>Доменные службы, политики безопасности, Event Log</p></div></div>
+<div class="sk"><div class="sk-i g"><i class="fas fa-lock"></i></div><div class="sk-t"><h4>Криптография</h4><p>Шифрование, сертификаты, SSL/TLS</p></div></div>
+<div class="sk"><div class="sk-i b"><i class="fas fa-language"></i></div><div class="sk-t"><h4>Технический английский</h4><p>Чтение документации, логов, описаний уязвимостей</p></div></div>
+<div class="sk"><div class="sk-i g"><i class="fas fa-water"></i></div><div class="sk-t"><h4>Анализ трафика</h4><p>Wireshark, tcpdump — захват и расшифровка пакетов</p></div></div>
 </div>
 </div>
 </div>
@@ -228,24 +362,113 @@ footer{background:rgba(0,0,0,0.3);border-top:1px solid var(--glow);padding:45px 
 <div class="wrap">
 <div class="sec-h">
 <h2>Карьерный <span>путь</span></h2>
-<p>Этапы профессионального роста от стажёра до эксперта</p>
+<p>От стажёра до руководителя SOC</p>
+</div>
+<div class="career-table-wrap">
+<table class="career-table">
+<thead>
+<tr><th>Уровень</th><th>Должность</th><th>Срок</th><th>Описание</th></tr>
+</thead>
+<tbody>
+<tr><td><span class="badge badge-j">Начальный</span></td><td>SOC Analyst (Junior / L1)</td><td>0–1 год</td><td>Мониторинг алертов, первичная классификация, работа по playbook</td></tr>
+<tr><td><span class="badge badge-m">Средний</span></td><td>SOC Analyst (Middle / L2)</td><td>1–3 года</td><td>Глубокий анализ угроз, расследование инцидентов, написание правил</td></tr>
+<tr><td><span class="badge badge-s">Старший</span></td><td>Ведущий инженер (L3)</td><td>3–5 лет</td><td>Руководство расследованиями, стратегии обнаружения, менторство</td></tr>
+<tr><td><span class="badge badge-l">Управленческий</span></td><td>Руководитель смены SOC</td><td>от 5 лет</td><td>Управление командой, координация, стратегическое планирование</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="sec-h" style="margin-top:60px">
+<h2>Как <span>начать</span></h2>
+<p>Пошаговый путь к профессии SOC-аналитика</p>
 </div>
 <div class="tl">
 <div class="tl-i glass">
-<h4>L1 — SOC Analyst (Junior)</h4>
-<p>Мониторинг алертов, первичная классификация инцидентов, работа по готовым playbook. Обучение основам анализа и инструментов SIEM</p>
+<h4>1. Базовое образование</h4>
+<p>Студенты 3–4 курсов технических специальностей: Информационная безопасность, Сети, Прикладная информатика. Допускается незаконченное высшее.</p>
 </div>
 <div class="tl-i glass">
-<h4>L2 — SOC Analyst (Middle)</h4>
-<p>Глубокий анализ угроз, расследование сложных инцидентов, написание правил детектирования и автоматизация рутинных процессов</p>
+<h4>2. Самостоятельная подготовка</h4>
+<p>Изучение TCP/IP, OSI, базовое администрирование Linux, знакомство с Wireshark и SIEM. Рекомендованы открытые курсы и CTF-соревнования.</p>
 </div>
 <div class="tl-i glass">
-<h4>L3 — Senior SOC / IR Specialist</h4>
-<p>Руководство расследованиями, разработка стратегий обнаружения, координация с другими подразделениями, менторство младших аналитиков</p>
+<h4>3. Стажировка в ЭРТЕЛЕКОМ</h4>
+<p>Подача заявки, собеседование, закрепление наставника. Вводный курс по внутренним регламентам и корпоративному стеку ПО.</p>
 </div>
 <div class="tl-i glass">
-<h4>Дальнейшее развитие</h4>
-<p>Переход в Threat Hunting, Incident Response Manager, Security Architect, или управление SOC-командой</p>
+<h4>4. Выход на самостоятельную работу</h4>
+<p>Сдача квалификационного экзамена, работа под супервизией наставника (до 3 месяцев), перевод на полную ставку.</p>
+</div>
+<div class="tl-i glass">
+<h4>5. Карьерные перспективы</h4>
+<p>Рост до L2 через 1–3 года, до ведущего инженера через 3–5 лет, до руководителя смены SOC от 5 лет.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="daylife">
+<div class="wrap">
+<div class="sec-h">
+<h2>Один день <span>из жизни</span></h2>
+<p>Как проходит смена SOC-аналитика</p>
+</div>
+<div class="schedule">
+<div class="schedule-item">
+<div class="schedule-time"><div class="hour">09:00</div></div>
+<div class="schedule-dot"></div>
+<div class="schedule-content">
+<h4>Утренний кофе и разбор ночных логов</h4>
+<p>Пока спали в ЭРТХ, боты не спали. Анализируем, что происходило за ночь.</p>
+</div>
+</div>
+<div class="schedule-item">
+<div class="schedule-time"><div class="hour">10:00</div></div>
+<div class="schedule-dot"></div>
+<div class="schedule-content">
+<h4>Daily-митинг с командой</h4>
+<p>Обсуждаем «вчерашние хвосты» и новых опасных противников.</p>
+</div>
+</div>
+<div class="schedule-item">
+<div class="schedule-time"><div class="hour">11:00</div></div>
+<div class="schedule-dot"></div>
+<div class="schedule-content">
+<h4>Пик активности</h4>
+<p>Сработало правило: «Подозрительный трафик на почтовый сервер». Анализируем и блокируем фишинговое письмо — подвиг на завтрак!</p>
+</div>
+</div>
+<div class="schedule-item">
+<div class="schedule-time"><div class="hour">13:00</div></div>
+<div class="schedule-dot"></div>
+<div class="schedule-content">
+<h4>Обед</h4>
+<p>Кибербезопасность — это важно, но без еды никуда.</p>
+</div>
+</div>
+<div class="schedule-item">
+<div class="schedule-time"><div class="hour">14:00</div></div>
+<div class="schedule-dot"></div>
+<div class="schedule-content">
+<h4>Тюнинг SIEM-системы</h4>
+<p>Пишем новые корреляции, чтобы система умнела.</p>
+</div>
+</div>
+<div class="schedule-item">
+<div class="schedule-time"><div class="hour">16:00</div></div>
+<div class="schedule-dot"></div>
+<div class="schedule-content">
+<h4>Учебный час</h4>
+<p>Изучаем свежие уязвимости — спасибо хакерам за работу!</p>
+</div>
+</div>
+<div class="schedule-item">
+<div class="schedule-time"><div class="hour">18:00</div></div>
+<div class="schedule-dot"></div>
+<div class="schedule-content">
+<h4>Передача смены</h4>
+<p>Чётко описываем коллеге, на что обратить внимание этой ночью.</p>
+</div>
 </div>
 </div>
 </div>
@@ -254,51 +477,83 @@ footer{background:rgba(0,0,0,0.3);border-top:1px solid var(--glow);padding:45px 
 <section id="why">
 <div class="wrap">
 <div class="sec-h">
-<h2>Почему это <span>круто</span></h2>
-<p>Преимущества профессии SOC-аналитика</p>
+<h2>Почему это важно <span>для ЭРТХ</span></h2>
+<p>ЭРТЕЛЕКОМ — цифровая экосистема страны</p>
 </div>
-<div class="ben-g">
-<div class="ben glass">
-<i class="fas fa-fire"></i>
-<div>
-<h4>Высокий спрос</h4>
-<p>Нехватка специалистов по кибербезопасности ощущается во всём мире. SOC-аналитики востребованы в каждой крупной компании</p>
+<div class="why-grid">
+<div class="why-card glass">
+<i class="fas fa-signal" style="color:var(--blue)"></i>
+<h4>Связь для миллионов</h4>
+<p>Мы обеспечиваем связь, интернет и сервисы для миллионов людей. Если SOC не работает — риск остановки бизнеса колоссален.</p>
 </div>
+<div class="why-card glass">
+<i class="fas fa-shield-halved" style="color:var(--green)"></i>
+<h4>Защита инфраструктуры</h4>
+<p>SOC — первая линия обороны критической инфраструктуры страны. Каждый алерт — потенциально спасённые данные.</p>
 </div>
-<div class="ben glass">
-<i class="fas fa-coins"></i>
-<div>
-<h4>Конкурентная зарплата</h4>
-<p>Даже начальная позиция L1 оплачивается выше среднерыночного уровня, а рост компенсации с опытом значителен</p>
-</div>
-</div>
-<div class="ben glass">
-<i class="fas fa-graduation-cap"></i>
-<div>
-<h4>Постоянное обучение</h4>
-<p>Ландшафт угроз меняется ежедневно. Вы будете осваивать новые технологии и методики каждые несколько месяцев</p>
+<div class="why-card glass">
+<i class="fas fa-users" style="color:var(--orange)"></i>
+<h4>Команда профессионалов</h4>
+<p>Работа в команде единомышленников, где каждый специалист вносит вклад в общую безопасность.</p>
 </div>
 </div>
-<div class="ben glass">
-<i class="fas fa-rocket"></i>
-<div>
-<h4>Быстрый карьерный рост</h4>
-<p>От L1 до руководителя SOC можно дойти за 3-5 лет при наличии мотивации и готовности вкладываться в развитие</p>
+<div class="stat-row">
+<div class="stat-box glass">
+<div class="num">24/7</div>
+<p>Режим работы SOC</p>
+</div>
+<div class="stat-box glass">
+<div class="num">3 сек</div>
+<p>Время реакции на угрозу</p>
+</div>
+<div class="stat-box glass">
+<div class="num">100+</div>
+<p>Источников событий</p>
+</div>
+<div class="stat-box glass">
+<div class="num">0</div>
+<p>Допустимых пропусков</p>
 </div>
 </div>
-<div class="ben glass">
-<i class="fas fa-heart"></i>
-<div>
-<h4>Миссия имеет значение</h4>
-<p>Вы защищаете данные людей и бизнес-процессы от реальных злоумышленников. Это не абстрактная, а очень осязаемая работа</p>
+</div>
+</section>
+
+<section id="quiz">
+<div class="wrap">
+<div class="sec-h">
+<h2>Проверь <span>себя</span></h2>
+<p>Маленький тест на профессиональную смекалку</p>
+</div>
+<div class="quiz" id="quizBlock">
+<div class="quiz-q" data-correct="2">
+<h3><span>Вопрос 1.</span> Ты сидишь в SOC, и монитор показывает 100500 одинаковых запросов с одного IP. Твои действия?</h3>
+<div class="quiz-opts">
+<div class="quiz-opt" data-val="1"><div class="radio"></div><div>Думаю, что это глюк, и перезагружаю ПК</div></div>
+<div class="quiz-opt" data-val="2"><div class="radio"></div><div>Звоню старшему и говорю: «Похоже на брутфорс. Блокируем IP!»</div></div>
+<div class="quiz-opt" data-val="3"><div class="radio"></div><div>Иду пить чай, надеюсь, что это само пройдёт</div></div>
 </div>
 </div>
-<div class="ben glass">
-<i class="fas fa-globe"></i>
-<div>
-<h4>Удалённая работа</h4>
-<p>Многие SOC-команды работают в формате 24/7 и поддерживают удалённый формат для аналитиков из разных часовых поясов</p>
+<div class="quiz-q" data-correct="2">
+<h3><span>Вопрос 2.</span> Ты нашёл подозрительный файл в системе. Что делаешь?</h3>
+<div class="quiz-opts">
+<div class="quiz-opt" data-val="1"><div class="radio"></div><div>Открываю его в блокноте, чтобы прочитать «своими глазами»</div></div>
+<div class="quiz-opt" data-val="2"><div class="radio"></div><div>Отправляю его в изолированную «песочницу» (Sandbox) для анализа</div></div>
+<div class="quiz-opt" data-val="3"><div class="radio"></div><div>Удаляю, молясь, чтобы никто не заметил</div></div>
 </div>
+</div>
+<div class="quiz-q" data-correct="2">
+<h3><span>Вопрос 3.</span> К тебе пришёл пользователь с жалобой: «У меня всё тормозит!». Твой профессиональный ход?</h3>
+<div class="quiz-opts">
+<div class="quiz-opt" data-val="1"><div class="radio"></div><div>Сказать: «Купи новый компьютер»</div></div>
+<div class="quiz-opt" data-val="2"><div class="radio"></div><div>Проверить логи на предмет аномальной активности, прежде чем лезть в настройки железа</div></div>
+<div class="quiz-opt" data-val="3"><div class="radio"></div><div>Перезагрузить роутер и надеяться на чудо</div></div>
+</div>
+</div>
+<div class="quiz-result" id="quizResult">
+<div class="score" id="scoreNum"></div>
+<h3 id="scoreTitle"></h3>
+<p id="scoreDesc"></p>
+<a href="#" class="btn" onclick="resetQuiz();return false">Пройти заново</a>
 </div>
 </div>
 </div>
@@ -307,8 +562,8 @@ footer{background:rgba(0,0,0,0.3);border-top:1px solid var(--glow);padding:45px 
 <section id="contact">
 <div class="wrap">
 <div class="sec-h">
-<h2>Свяжитесь с <span>нами</span></h2>
-<p>Хотите узнать больше о профессии или обсудить обучение?</p>
+<h2>Хочешь <span>попробовать</span>?</h2>
+<p>Отправь резюме или задай вопрос</p>
 </div>
 <div class="contact-g">
 <form class="cform glass" onsubmit="return false">
@@ -321,14 +576,14 @@ footer{background:rgba(0,0,0,0.3);border-top:1px solid var(--glow);padding:45px 
 <div class="fg">
 <textarea placeholder="Сообщение" required></textarea>
 </div>
-<button type="submit" class="submit">Отправить</button>
+<button type="submit" class="submit">Отправить резюме</button>
 </form>
 <div class="cinfo">
 <div class="ci glass">
 <i class="fas fa-envelope"></i>
 <div>
 <h4>Email</h4>
-<p>info@soc-analyst.ru</p>
+<p>hr@ertelecom.ru</p>
 </div>
 </div>
 <div class="ci glass">
@@ -342,8 +597,81 @@ footer{background:rgba(0,0,0,0.3);border-top:1px solid var(--glow);padding:45px 
 <i class="fas fa-location-dot"></i>
 <div>
 <h4>Адрес</h4>
-<p>Москва, ул. Кибербезопасности, 42</p>
+<p>Москва, ЭРТЕЛЕКОМ</p>
 </div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="resume">
+<div class="wrap">
+<div class="sec-h">
+<h2>Отправь <span>резюме</span></h2>
+<p>Заполни форму и стань частью команды SOC</p>
+</div>
+<div class="resume-g">
+<div class="glass resume-form-wrap">
+<form class="resume-form" id="resumeForm" onsubmit="submitResume(event)">
+<div class="resume-row">
+<div class="fg"><input type="text" id="rName" placeholder="ФИО" required></div>
+<div class="fg"><input type="tel" id="rPhone" placeholder="+7 (999) 123-45-67" required></div>
+</div>
+<div class="resume-row">
+<div class="fg"><input type="email" id="rEmail" placeholder="name@example.com" required></div>
+<div class="fg"><input type="text" id="rAge" placeholder="Возраст" required></div>
+</div>
+<div class="fg">
+<select id="rEducation" required>
+<option value="" disabled selected>Уровень образования</option>
+<option value="student">Студент 3–4 курса</option>
+<option value="bachelor">Бакалавр</option>
+<option value="master">Магистр</option>
+<option value="specialist">Специалист</option>
+</select>
+</div>
+<div class="fg">
+<select id="rExperience" required>
+<option value="" disabled selected>Опыт работы</option>
+<option value="none">Без опыта</option>
+<option value="junior">До 1 года</option>
+<option value="middle">1–3 года</option>
+<option value="senior">Более 3 лет</option>
+</select>
+</div>
+<div class="fg">
+<textarea id="rAbout" placeholder="Расскажи о себе: навыки, сертификаты, CTF-опыт, почему хочешь в SOC..." rows="5" required></textarea>
+</div>
+<div class="fg">
+<label class="file-label">
+<input type="file" id="rFile" accept=".pdf,.doc,.docx">
+<div class="file-box"><i class="fas fa-cloud-arrow-up"></i><span id="fileText">Прикрепить резюме (PDF, DOC)</span></div>
+</label>
+</div>
+<button type="submit" class="submit resume-btn" disabled id="resumeBtn"><i class="fas fa-paper-plane"></i> Отправить резюме</button>
+</form>
+<div class="resume-success" id="resumeSuccess">
+<div class="success-icon"><i class="fas fa-check-circle"></i></div>
+<h3>Резюме отправлено!</h3>
+<p>Мы свяжемся с тобой в ближайшее время. Удачи!</p>
+</div>
+</div>
+<div class="resume-info">
+<div class="glass ri-card">
+<i class="fas fa-list-check" style="color:var(--blue)"></i>
+<h4>Что дальше?</h4>
+<p>1. Мы изучим твоё резюме<br>2. Свяжемся для первого разговора<br>3. Техническое собеседование<br>4. Стажировка в SOC</p>
+</div>
+<div class="glass ri-card">
+<i class="fas fa-lightbulb" style="color:var(--orange)"></i>
+<h4>Советы</h4>
+<p>Укажи experience с CTF-соревнований, упомяни знание Linux и сетей, расскажи о курсах по информационной безопасности</p>
+</div>
+<div class="glass ri-card">
+<i class="fas fa-clock" style="color:var(--green)"></i>
+<h4>Сроки</h4>
+<p>Ответ на резюме — до 5 рабочих дней. Собеседование — в течение 2 недель. Стажировка — от 1 месяца</p>
 </div>
 </div>
 </div>
@@ -352,7 +680,7 @@ footer{background:rgba(0,0,0,0.3);border-top:1px solid var(--glow);padding:45px 
 
 <footer>
 <div class="wrap ftr">
-<div class="ftr-l">&copy; 2026 SOC Analyst. Все права защищены.</div>
+<div class="ftr-l">&copy; 2026 SOC Analyst — ЭРТЕЛЕКОМ. Все права защищены.</div>
 <div class="ftr-s">
 <a href="#"><i class="fab fa-telegram"></i></a>
 <a href="#"><i class="fab fa-vk"></i></a>
@@ -362,5 +690,87 @@ footer{background:rgba(0,0,0,0.3);border-top:1px solid var(--glow);padding:45px 
 </div>
 </footer>
 
+<script>
+function showTab(t){
+document.querySelectorAll('.tab-content').forEach(el=>el.classList.remove('active'));
+document.querySelectorAll('.tab-btn').forEach(el=>el.classList.remove('active'));
+document.getElementById('tab-'+t).classList.add('active');
+event.target.classList.add('active');
+}
+
+document.querySelectorAll('.quiz-opt').forEach(opt=>{
+opt.addEventListener('click',function(){
+const q=this.closest('.quiz-q');
+if(q.classList.contains('answered'))return;
+q.classList.add('answered');
+const correct=q.dataset.correct;
+const val=this.dataset.val;
+this.classList.add('selected');
+q.querySelectorAll('.quiz-opt').forEach(o=>{o.classList.add('disabled');if(o.dataset.val===correct)o.classList.add('correct')});
+if(val!==correct)this.classList.add('wrong');
+if(!document.querySelector('.quiz-q:not(.answered)'))showResult();
+});
+});
+
+function showResult(){
+let score=0;
+document.querySelectorAll('.quiz-q').forEach(q=>{
+if(q.querySelector('.quiz-opt.selected')?.dataset.val===q.dataset.correct)score++;
+});
+const r=document.getElementById('quizResult');
+r.classList.add('show');
+document.getElementById('scoreNum').textContent=score+'/3';
+if(score===0){
+document.getElementById('scoreTitle').textContent='Хакер выходного дня';
+document.getElementById('scoreDesc').textContent='Ничего страшного! Мы тебя научим — всему обучим с нуля. Приходи на стажировку!';
+}else if(score<=2){
+document.getElementById('scoreTitle').textContent='Есть профессиональная чуйка!';
+document.getElementById('scoreDesc').textContent='Ты точно наш кандидат. Отправляй резюме!';
+}else{
+document.getElementById('scoreTitle').textContent='Рождённый защитник!';
+document.getElementById('scoreDesc').textContent='Ты — настоящий SOC-аналитик. Кнопка «Отправить резюме» ждёт тебя!';
+}
+r.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+function resetQuiz(){
+document.querySelectorAll('.quiz-q').forEach(q=>{q.classList.remove('answered');q.querySelectorAll('.quiz-opt').forEach(o=>{o.classList.remove('selected','correct','wrong','disabled')})});
+document.getElementById('quizResult').classList.remove('show');
+document.getElementById('quizBlock').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+document.getElementById('rFile').addEventListener('change',function(){
+document.getElementById('fileText').textContent=this.files[0]?this.files[0].name:'Прикрепить резюме (PDF, DOC)';
+validateResume();
+});
+
+const resumeFields=['rName','rPhone','rEmail','rAge','rEducation','rExperience','rAbout'];
+resumeFields.forEach(id=>{
+const el=document.getElementById(id);
+el.addEventListener('input',validateResume);
+el.addEventListener('change',validateResume);
+});
+
+function validateResume(){
+const allFilled=resumeFields.every(id=>document.getElementById(id).value.trim()!=='');
+const nameVal=document.getElementById('rName').value.trim();
+const emailVal=document.getElementById('rEmail').value.trim();
+const phoneVal=document.getElementById('rPhone').value.trim();
+const nameOk=/^[a-zA-Zа-яА-ЯёЁ\s\-]{2,}$/.test(nameVal);
+const emailOk=/^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(emailVal);
+const phoneOk=/^\+7\s\(\d{3}\)\s\d{3}-\d{2}-\d{2}$/.test(phoneVal);
+setErr('rName',nameVal.length>0&&!nameOk);
+setErr('rEmail',emailVal.length>0&&!emailOk);
+setErr('rPhone',phoneVal.length>0&&!phoneOk);
+document.getElementById('resumeBtn').disabled=!(allFilled&&nameOk&&emailOk&&phoneOk);
+}
+function setErr(id,bad){document.getElementById(id).classList.toggle('field-err',bad)}
+
+function submitResume(e){
+e.preventDefault();
+document.querySelector('.resume-form').style.display='none';
+document.getElementById('resumeSuccess').classList.add('show');
+}
+</script>
 </body>
 </html>
