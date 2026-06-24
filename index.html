@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOC Analyst</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root{--bg:#0b0e14;--card:rgba(255,255,255,0.04);--blue:#00a3ff;--green:#00ff88;--txt:#e0e0e0;--dim:#8892a0;--glow:rgba(0,163,255,0.15)}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-height:1.7}
+a{color:var(--blue);text-decoration:none;transition:.3s}
+a:hover{color:var(--green)}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+header{position:fixed;top:0;width:100%;background:rgba(11,14,20,0.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--glow);z-index:999;padding:16px 0}
+.hdr{display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:1.5rem;font-weight:700;color:#fff;display:flex;align-items:center;gap:10px}
+.logo i{color:var(--blue);font-size:1.8rem}
+nav ul{list-style:none;display:flex;gap:28px}
+nav a{color:var(--txt);font-weight:500;position:relative}
+nav a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--green);transition:.3s}
+nav a:hover::after{width:100%}
+.mob{display:none;font-size:1.6rem;color:#fff;cursor:pointer}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;padding:140px 20px 80px}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 40%,rgba(0,163,255,0.12) 0%,transparent 60%),radial-gradient(circle at 70% 60%,rgba(0,255,136,0.08) 0%,transparent 60%);animation:pulse 6s ease-in-out infinite alternate}
+@keyframes pulse{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.05);opacity:1}}
+.hero::after{content:'';position:absolute;top:0;left:-100%;width:300%;height:2px;background:linear-gradient(90deg,transparent,var(--blue),transparent);animation:scan 4s linear infinite}
+@keyframes scan{0%{top:15%}100%{top:85%}}
+.hero-c{position:relative;z-index:2;max-width:850px}
+.hero h1{font-size:3.2rem;font-weight:800;line-height:1.2;margin-bottom:24px;background:linear-gradient(135deg,var(--blue),var(--green));-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200% 200%;animation:grad 5s ease infinite}
+@keyframes grad{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.hero p{font-size:1.2rem;color:var(--dim);margin-bottom:36px;max-width:650px;margin-inline:auto}
+.btn{display:inline-block;padding:15px 38px;border-radius:50px;background:linear-gradient(135deg,var(--blue),var(--green));color:#fff;font-weight:600;font-size:1rem;text-transform:uppercase;letter-spacing:.8px;transition:.3s;box-shadow:0 8px 25px rgba(0,163,255,0.3)}
+.btn:hover{transform:translateY(-3px);box-shadow:0 12px 35px rgba(0,163,255,0.4);color:#fff}
+section{padding:110px 0}
+.sec-h{text-align:center;margin-bottom:60px}
+.sec-h h2{font-size:2.4rem;font-weight:700;color:#fff;margin-bottom:14px}
+.sec-h h2 span{color:var(--blue)}
+.sec-h p{font-size:1.05rem;color:var(--dim);max-width:550px;margin:0 auto}
+.glass{background:var(--card);border:1px solid var(--glow);border-radius:18px;padding:36px;backdrop-filter:blur(8px);transition:.4s}
+.glass:hover{transform:translateY(-8px);box-shadow:0 16px 45px rgba(0,163,255,0.18);border-color:var(--blue)}
+.about-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px}
+.about-card{text-align:center}
+.about-card i{font-size:2.8rem;color:var(--blue);margin-bottom:22px;transition:.3s}
+.about-card:hover i{color:var(--green)}
+.about-card h3{font-size:1.3rem;color:#fff;margin-bottom:12px}
+.about-card p{color:var(--dim);font-size:.95rem}
+.skills-wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px}
+.sk{display:flex;align-items:center;gap:18px;padding:22px;background:var(--card);border-radius:14px;border:1px solid transparent;transition:.3s}
+.sk:hover{border-color:var(--blue);background:rgba(0,163,255,0.06)}
+.sk-i{width:56px;height:56px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.7rem;flex-shrink:0}
+.sk-i.b{background:rgba(0,163,255,0.14);color:var(--blue)}
+.sk-i.g{background:rgba(0,255,136,0.14);color:var(--green)}
+.sk-t h4{color:#fff;font-size:1.05rem;margin-bottom:4px}
+.sk-t p{color:var(--dim);font-size:.88rem}
+.tools-sec{margin-bottom:44px}
+.tools-sec h3{color:var(--blue);font-size:1.2rem;margin-bottom:22px;display:flex;align-items:center;gap:10px}
+.tools-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:18px}
+.tool-t{background:var(--card);border:1px solid var(--glow);border-radius:11px;padding:22px 14px;text-align:center;transition:.3s}
+.tool-t:hover{border-color:var(--green);transform:translateY(-4px)}
+.tool-t i{font-size:2rem;color:var(--blue);margin-bottom:10px}
+.tool-t span{display:block;color:#fff;font-weight:500;font-size:.92rem}
+.tl{position:relative;max-width:860px;margin:0 auto;padding:20px 0}
+.tl::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,var(--blue),var(--green));transform:translateX(-50%)}
+.tl-i{position:relative;width:44%;padding:24px;background:var(--card);border-radius:14px;border:1px solid var(--glow);margin-bottom:36px}
+.tl-i:nth-child(odd){margin-left:6%}
+.tl-i:nth-child(even){margin-left:50%}
+.tl-i::before{content:'';position:absolute;width:18px;height:18px;background:var(--blue);border-radius:50%;top:28px;border:3px solid var(--bg)}
+.tl-i:nth-child(odd)::before{right:-33px}
+.tl-i:nth-child(even)::before{left:-33px}
+.tl-i h4{color:var(--blue);font-size:1.15rem;margin-bottom:8px}
+.tl-i p{color:var(--dim);font-size:.93rem}
+.ben-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px}
+.ben{display:flex;align-items:flex-start;gap:18px;padding:28px;background:var(--card);border-radius:14px;border-left:4px solid var(--green)}
+.ben i{font-size:1.9rem;color:var(--green);flex-shrink:0}
+.ben h4{color:#fff;margin-bottom:8px}
+.ben p{color:var(--dim);font-size:.93rem}
+.contact-g{display:grid;grid-template-columns:1fr 1fr;gap:55px;align-items:start}
+.cform{display:flex;flex-direction:column;gap:22px}
+.fg{position:relative}
+.fg input,.fg textarea{width:100%;padding:16px 18px;background:var(--card);border:1px solid var(--glow);border-radius:10px;color:#fff;font-family:inherit;font-size:.95rem;transition:.3s}
+.fg input:focus,.fg textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 15px rgba(0,163,255,0.15)}
+.fg textarea{min-height:130px;resize:vertical}
+.submit{padding:14px;border:none;border-radius:10px;background:linear-gradient(135deg,var(--blue),var(--green));color:#fff;font-weight:600;font-size:1rem;cursor:pointer;transition:.3s}
+.submit:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,163,255,0.3)}
+.cinfo{display:flex;flex-direction:column;gap:20px}
+.ci{display:flex;align-items:center;gap:16px;padding:18px;background:var(--card);border-radius:12px}
+.ci i{font-size:1.4rem;color:var(--blue);width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:rgba(0,163,255,0.1);border-radius:50%;flex-shrink:0}
+.ci div h4{color:#fff;margin-bottom:3px;font-size:.95rem}
+.ci div p{color:var(--dim);font-size:.88rem}
+footer{background:rgba(0,0,0,0.3);border-top:1px solid var(--glow);padding:45px 0 25px}
+.ftr{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+.ftr-l{color:var(--dim);font-size:.88rem}
+.ftr-s{display:flex;gap:14px}
+.ftr-s a{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:var(--card);color:var(--txt);font-size:1rem;transition:.3s}
+.ftr-s a:hover{background:var(--blue);color:#fff;transform:translateY(-3px)}
+@media(max-width:900px){.hero h1{font-size:2.4rem}nav ul{display:none}.mob{display:block}.contact-g{grid-template-columns:1fr}.tl::before{left:20px}.tl-i{width:calc(100% - 50px);margin-left:50px!important}.tl-i::before{left:-38px!important;right:auto!important}}
+@media(max-width:600px){.hero h1{font-size:1.9rem}.sec-h h2{font-size:1.8rem}nav ul.show{display:flex;flex-direction:column;position:absolute;top:65px;left:0;right:0;background:rgba(11,14,20,0.98);padding:20px;gap:18px;border-bottom:1px solid var(--glow)}}
+</style>
+</head>
+<body>
+<header>
+<div class="wrap hdr">
+<div class="logo"><i class="fas fa-shield-halved"></i>SOC Analyst</div>
+<nav>
+<ul id="nav">
+<li><a href="#about">О профессии</a></li>
+<li><a href="#skills">Навыки</a></li>
+<li><a href="#tools">Инструменты</a></li>
+<li><a href="#career">Карьера</a></li>
+<li><a href="#why">Преимущества</a></li>
+<li><a href="#contact">Контакты</a></li>
+</ul>
+</nav>
+<i class="fas fa-bars mob" onclick="document.getElementById('nav').classList.toggle('show')"></i>
+</div>
+</header>
+
+<section class="hero">
+<div class="hero-c">
+<h1>Первая линия обороны вашей цифровой инфраструктуры</h1>
+<p>SOC Analyst — глаза и уши центра безопасности. Отслеживает угрозы 24/7, классифицирует инциденты и защищает бизнес от кибератак в реальном времени.</p>
+<a href="#about" class="btn">Узнать больше</a>
+</div>
+</section>
+
+<section id="about">
+<div class="wrap">
+<div class="sec-h">
+<h2>О <span>профессии</span></h2>
+<p>Роль специалиста SOC первой линии и почему она критически важна</p>
+</div>
+<div class="about-grid">
+<div class="glass about-card">
+<i class="fas fa-desktop"></i>
+<h3>Мониторинг</h3>
+<p>Непрерывное наблюдение за сетевой активностью, серверами и рабочими станциями через SIEM и средства детектирования</p>
+</div>
+<div class="glass about-card">
+<i class="fas fa-search"></i>
+<h3>Анализ событий</h3>
+<p>Изучение алертов, корреляция данных из разных источников, отделение ложных срабатываний от реальных инцидентов</p>
+</div>
+<div class="glass about-card">
+<i class="fas fa-bolt"></i>
+<h3>Реагирование</h3>
+<p>Оперативное противодействие угрозам: изоляция скомпрометированных хостов, блокировка вредоносного трафика</p>
+</div>
+<div class="glass about-card">
+<i class="fas fa-tags"></i>
+<h3>Классификация</h3>
+<p>Определение типа атаки (фишинг, вредоносное ПО, lateral movement), уровня критичности и приоритетов реагирования</p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="skills">
+<div class="wrap">
+<div class="sec-h">
+<h2>Ключевые <span>навыки</span></h2>
+<p>Технические и аналитические компетенции успешного SOC-аналитика</p>
+</div>
+<div class="skills-wrap">
+<div class="sk"><div class="sk-i b"><i class="fas fa-chart-line"></i></div><div class="sk-t"><h4>SIEM-системы</h4><p>Splunk, QRadar, Sentinel, ELK Stack</p></div></div>
+<div class="sk"><div class="sk-i g"><i class="fas fa-network-wired"></i></div><div class="sk-t"><h4>Сетевые протоколы</h4><p>TCP/IP, DNS, HTTP/S, NetFlow</p></div></div>
+<div class="sk"><div class="sk-i b"><i class="fab fa-windows"></i></div><div class="sk-t"><h4>Windows / Linux</h4><p>Администрирование и логирование</p></div></div>
+<div class="sk"><div class="sk-i g"><i class="fas fa-brain"></i></div><div class="sk-t"><h4>Аналитическое мышление</h4><p>Расследования и выводы из данных</p></div></div>
+<div class="sk"><div class="sk-i b"><i class="fas fa-file-shield"></i></div><div class="sk-t"><h4>IOCs и правила</h4><p>YARA, Sigma-правила, хеши</p></div></div>
+<div class="sk"><div class="sk-i g"><i class="fas fa-comments"></i></div><div class="sk-t"><h4>Коммуникация</h4><p>Документирование и отчёты</p></div></div>
+<div class="sk"><div class="sk-i b"><i class="fas fa-fire-extinguisher"></i></div><div class="sk-t"><h4>Стрессоустойчивость</h4><p>Работа под давлением 24/7</p></div></div>
+<div class="sk"><div class="sk-i g"><i class="fas fa-virus-slash"></i></div><div class="sk-t"><h4>Анализ вредоносного кода</h4><p>Основы реверс-инжинеринга</p></div></div>
+</div>
+</div>
+</section>
+
+<section id="tools">
+<div class="wrap">
+<div class="sec-h">
+<h2>Инструменты и <span>технологии</span></h2>
+<p>Популярные платформы, с которыми работает SOC-аналитик</p>
+</div>
+<div class="tools-sec">
+<h3><i class="fas fa-satellite-dish"></i> SIEM и мониторинг</h3>
+<div class="tools-g">
+<div class="tool-t"><i class="fas fa-database"></i><span>Splunk</span></div>
+<div class="tool-t"><i class="fas fa-server"></i><span>QRadar</span></div>
+<div class="tool-t"><i class="fas fa-cloud"></i><span>Sentinel</span></div>
+<div class="tool-t"><i class="fas fa-search"></i><span>ELK Stack</span></div>
+<div class="tool-t"><i class="fas fa-eye"></i><span>Wazuh</span></div>
+</div>
+</div>
+<div class="tools-sec">
+<h3><i class="fas fa-shield-virus"></i> Анализ угроз</h3>
+<div class="tools-g">
+<div class="tool-t"><i class="fas fa-spider"></i><span>VirusTotal</span></div>
+<div class="tool-t"><i class="fas fa-magnifying-glass"></i><span>Any.Run</span></div>
+<div class="tool-t"><i class="fas fa-vial"></i><span>Cuckoo</span></div>
+<div class="tool-t"><i class="fas fa-bug"></i><span>Malwarebytes</span></div>
+</div>
+</div>
+<div class="tools-sec">
+<h3><i class="fas fa-wave-square"></i> Сетевой анализ</h3>
+<div class="tools-g">
+<div class="tool-t"><i class="fas fa-water"></i><span>Wireshark</span></div>
+<div class="tool-t"><i class="fas fa-diagram-project"></i><span>Zeek</span></div>
+<div class="tool-t"><i class="fas fa-route"></i><span>Suricata</span></div>
+<div class="tool-t"><i class="fas fa-tower-broadcast"></i><span>Snort</span></div>
+</div>
+</div>
+<div class="tools-sec">
+<h3><i class="fas fa-clipboard-list"></i> Управление инцидентами</h3>
+<div class="tools-g">
+<div class="tool-t"><i class="fas fa-database"></i><span>TheHive</span></div>
+<div class="tool-t"><i class="fas fa-magnet"></i><span>MISP</span></div>
+<div class="tool-t"><i class="fas fa-gauge-high"></i><span>Cortex</span></div>
+<div class="tool-t"><i class="fas fa-arrows-rotate"></i><span>Shuffle</span></div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="career">
+<div class="wrap">
+<div class="sec-h">
+<h2>Карьерный <span>путь</span></h2>
+<p>Этапы профессионального роста от стажёра до эксперта</p>
+</div>
+<div class="tl">
+<div class="tl-i glass">
+<h4>L1 — SOC Analyst (Junior)</h4>
+<p>Мониторинг алертов, первичная классификация инцидентов, работа по готовым playbook. Обучение основам анализа и инструментов SIEM</p>
+</div>
+<div class="tl-i glass">
+<h4>L2 — SOC Analyst (Middle)</h4>
+<p>Глубокий анализ угроз, расследование сложных инцидентов, написание правил детектирования и автоматизация рутинных процессов</p>
+</div>
+<div class="tl-i glass">
+<h4>L3 — Senior SOC / IR Specialist</h4>
+<p>Руководство расследованиями, разработка стратегий обнаружения, координация с другими подразделениями, менторство младших аналитиков</p>
+</div>
+<div class="tl-i glass">
+<h4>Дальнейшее развитие</h4>
+<p>Переход в Threat Hunting, Incident Response Manager, Security Architect, или управление SOC-командой</p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="why">
+<div class="wrap">
+<div class="sec-h">
+<h2>Почему это <span>круто</span></h2>
+<p>Преимущества профессии SOC-аналитика</p>
+</div>
+<div class="ben-g">
+<div class="ben glass">
+<i class="fas fa-fire"></i>
+<div>
+<h4>Высокий спрос</h4>
+<p>Нехватка специалистов по кибербезопасности ощущается во всём мире. SOC-аналитики востребованы в каждой крупной компании</p>
+</div>
+</div>
+<div class="ben glass">
+<i class="fas fa-coins"></i>
+<div>
+<h4>Конкурентная зарплата</h4>
+<p>Даже начальная позиция L1 оплачивается выше среднерыночного уровня, а рост компенсации с опытом значителен</p>
+</div>
+</div>
+<div class="ben glass">
+<i class="fas fa-graduation-cap"></i>
+<div>
+<h4>Постоянное обучение</h4>
+<p>Ландшафт угроз меняется ежедневно. Вы будете осваивать новые технологии и методики каждые несколько месяцев</p>
+</div>
+</div>
+<div class="ben glass">
+<i class="fas fa-rocket"></i>
+<div>
+<h4>Быстрый карьерный рост</h4>
+<p>От L1 до руководителя SOC можно дойти за 3-5 лет при наличии мотивации и готовности вкладываться в развитие</p>
+</div>
+</div>
+<div class="ben glass">
+<i class="fas fa-heart"></i>
+<div>
+<h4>Миссия имеет значение</h4>
+<p>Вы защищаете данные людей и бизнес-процессы от реальных злоумышленников. Это не абстрактная, а очень осязаемая работа</p>
+</div>
+</div>
+<div class="ben glass">
+<i class="fas fa-globe"></i>
+<div>
+<h4>Удалённая работа</h4>
+<p>Многие SOC-команды работают в формате 24/7 и поддерживают удалённый формат для аналитиков из разных часовых поясов</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="contact">
+<div class="wrap">
+<div class="sec-h">
+<h2>Свяжитесь с <span>нами</span></h2>
+<p>Хотите узнать больше о профессии или обсудить обучение?</p>
+</div>
+<div class="contact-g">
+<form class="cform glass" onsubmit="return false">
+<div class="fg">
+<input type="text" placeholder="Ваше имя" required>
+</div>
+<div class="fg">
+<input type="email" placeholder="Email" required>
+</div>
+<div class="fg">
+<textarea placeholder="Сообщение" required></textarea>
+</div>
+<button type="submit" class="submit">Отправить</button>
+</form>
+<div class="cinfo">
+<div class="ci glass">
+<i class="fas fa-envelope"></i>
+<div>
+<h4>Email</h4>
+<p>info@soc-analyst.ru</p>
+</div>
+</div>
+<div class="ci glass">
+<i class="fas fa-phone"></i>
+<div>
+<h4>Телефон</h4>
+<p>+7 (800) 123-45-67</p>
+</div>
+</div>
+<div class="ci glass">
+<i class="fas fa-location-dot"></i>
+<div>
+<h4>Адрес</h4>
+<p>Москва, ул. Кибербезопасности, 42</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<footer>
+<div class="wrap ftr">
+<div class="ftr-l">&copy; 2026 SOC Analyst. Все права защищены.</div>
+<div class="ftr-s">
+<a href="#"><i class="fab fa-telegram"></i></a>
+<a href="#"><i class="fab fa-vk"></i></a>
+<a href="#"><i class="fab fa-github"></i></a>
+<a href="#"><i class="fab fa-youtube"></i></a>
+</div>
+</div>
+</footer>
+
+</body>
+</html>
